@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<main>
+<% if (posts.length === 0) { %>
+    <h1>No posts yet. Go Create One!</h1>
+<% } else { %>
+    <% posts.forEach(post => { %>
+        <article class="post">
+            <h2><a href="/view/<%= post.id %>" style="color: rgba(24, 76, 135, 0.87);"><%= post.title %></a></h2>
+            <p><%= post.content.substring(0,100)%>...</p>
+            <form action="/delete/<%= post.id %>" method="POST" style="display: inline">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="/edit/<%= post.id %>"><button>Edit</button></a>
+        </article>
+    <% }); } %>
+</main>
+<%- include('partials/footer') %>
